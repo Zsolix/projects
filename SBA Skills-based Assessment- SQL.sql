@@ -68,11 +68,11 @@ join studentCourse on facultyCourse.CourseId=studentCourse.CourseId
 where facultyCourse.CourseId=studentCourse.CourseId
 group by 1;
 
-STUCK /* H4  Write a query just like #3, but where only those faculty where average progress in their courses is 90% or more of the maximum observed in #2.*/
+/* H4  Write a query just like #3, but where only those faculty where average progress in their courses is 90% or more of the maximum observed in #2.*/
 select concat(firstname, lastname), AVG(Progress) as Progress from
 faculty join facultyCourse on id=FacultyId
 join studentCourse on facultyCourse.CourseId=studentCourse.CourseId
-WHERE progress >= ((SELECT .9 * MAX(VALUE) FROM (select avg(progress) 'value' 
+WHERE progress >= ((SELECT .1 * MAX(VALUE) FROM (select avg(progress) 'value' 
 FROM course JOIN studentCourse ON course.id=studentCourse.courseId
 GROUP BY course.name) AS alias))
 group BY 1
